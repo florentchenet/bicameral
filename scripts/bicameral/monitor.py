@@ -33,9 +33,10 @@ if CONFIG_FILE.exists():
     load_dotenv(CONFIG_FILE, override=True)
 
 # Configuration (from unified config)
-REDIS_HOST = os.getenv('REDIS_HOST', '100.111.230.6')
-REDIS_PORT = int(os.getenv('REDIS_PORT', '6379'))
-REDIS_PASSWORD = os.getenv('REDIS_PASSWORD', 'bicameral_vps_secret')
+# Use LOCAL Redis for monitoring (where messages are sent)
+REDIS_HOST = os.getenv('LOCAL_REDIS_HOST', 'localhost')
+REDIS_PORT = int(os.getenv('LOCAL_REDIS_PORT', '6379'))
+REDIS_PASSWORD = os.getenv('LOCAL_REDIS_PASSWORD', 'bicameral_secret_local')
 STREAM_KEY = os.getenv('STREAM_KEY', 'bicameral:stream:collab')
 
 def connect_redis():
