@@ -3,7 +3,7 @@ name = "bicameral"
 version = "2.1.0"
 description = "AI collaboration infrastructure - portable messaging between Claude & Gemini"
 authors = [{name = "Team RADIORHINO", email = "hello@rhncrs.com"}]
-license = {text = "MIT"}
+license = "MIT"
 readme = "README.md"
 requires-python = ">=3.10"
 keywords = ["ai", "collaboration", "redis", "claude", "gemini", "messaging", "llm"]
@@ -11,7 +11,6 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: MacOS",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
