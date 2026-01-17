@@ -18,9 +18,8 @@ from dotenv import load_dotenv
 CONFIG_FILE = Path.home() / '.bicameral' / '.env'
 if CONFIG_FILE.exists():
     load_dotenv(CONFIG_FILE, override=True)
-else:
-    print(f"⚠️  Config file not found: {CONFIG_FILE}")
-    print("Run setup first or create ~/.bicameral/.env")
+# Note: Config loading is now handled by bicameral.config module
+# Run 'bicameral init' if not configured
 
 # Configuration
 REDIS_HOST = os.getenv('REDIS_HOST', '100.111.230.6')

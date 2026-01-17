@@ -1,20 +1,24 @@
 [project]
 name = "bicameral"
-version = "2.0.0"
-description = "AI collaboration infrastructure for Claude & Gemini"
+version = "2.1.0"
+description = "AI collaboration infrastructure - portable messaging between Claude & Gemini"
 authors = [{name = "Team RADIORHINO", email = "hello@rhncrs.com"}]
-license = {text = "MIT"}
+license = "MIT"
 readme = "README.md"
 requires-python = ">=3.10"
-keywords = ["ai", "collaboration", "redis", "claude", "gemini"]
+keywords = ["ai", "collaboration", "redis", "claude", "gemini", "messaging", "llm"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Topic :: Communications",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
 dependencies = [
@@ -31,24 +35,30 @@ dev = [
     "pytest-cov>=4.0.0",
     "black>=23.0.0",
     "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "types-redis>=4.0.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-org/bicameral"
-Documentation = "https://github.com/your-org/bicameral/tree/main/docs"
-Repository = "https://github.com/your-org/bicameral"
-Issues = "https://github.com/your-org/bicameral/issues"
+Homepage = "https://github.com/florentchenet/bicameral"
+Documentation = "https://github.com/florentchenet/bicameral#readme"
+Repository = "https://github.com/florentchenet/bicameral"
+Issues = "https://github.com/florentchenet/bicameral/issues"
+Changelog = "https://github.com/florentchenet/bicameral/releases"
 
 [project.scripts]
 bicameral = "bicameral.__main__:cli"
 
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = ["bicameral"]
 package-dir = {"" = "scripts"}
+
+[tool.setuptools.package-data]
+bicameral = ["py.typed"]
 
 [tool.black]
 line-length = 100
@@ -57,3 +67,16 @@ target-version = ['py310']
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=bicameral --cov-report=term-missing"
